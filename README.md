@@ -127,3 +127,44 @@ comentário de aplicação na issue "🎯 Prova" lista os seus valores; no
     (hash sha256 sobre as tabelas do `contrato.json`); a suíte — pública e
     escondida — recalcula a mesma variante na correção. Por isso o
     `params.json` de outro aluno é inútil para você.
+
+
+
+
+
+
+
+## Solução fila de atendimento
+
+### Rodar local
+
+Precisa de Python 3.11 ou maior.
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate        
+pip install -r requirements-dev.txt
+cd src
+python -m fila_atendimento
+```
+
+A API sobe em `http://localhost:8080`.
+
+### Rodar em container (Docker)
+
+```bash
+docker build -t fila-atendimento -f Containerfile .
+docker run -p 9201:8080 fila-atendimento
+```
+
+Para os dados continuarem depois de recriar o container, use um volume em `/data`:
+
+```bash
+docker run -p 9201:8080 -v fila-dados:/data fila-atendimento
+```
+
+### Testes
+
+```bash
+bash scripts/rodar_testes.sh
+```
