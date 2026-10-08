@@ -2,11 +2,13 @@
 
 from collections.abc import Callable
 from datetime import datetime
+
 from .dominio import FilaVazia, Senha, SenhaNaoEncontrada, Tipo, agora
 from .repositorio import RepositorioSenhas
 
 TAMANHO_PAINEL = 5
 CONTADOR_PREFERENCIAIS_SEGUIDAS = "preferenciais_seguidas"
+
 
 class FilaService:
     def __init__(
@@ -25,7 +27,6 @@ class FilaService:
         tipo = Tipo.de_valor(tipo_informado)
         momento = self._relogio()
         with self._repositorio.transacao():
-            
             numero = self._repositorio.proximo_numero(momento.date().isoformat())
             senha = Senha(
                 id=None, codigo=f"{self._prefixo}{numero:03d}", tipo=tipo, emissao=momento

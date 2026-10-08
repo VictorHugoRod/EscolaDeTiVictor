@@ -1,5 +1,7 @@
 import logging
+
 from waitress import serve
+
 from .app import create_app
 from .config import Config
 

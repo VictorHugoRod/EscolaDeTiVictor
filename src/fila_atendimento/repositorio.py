@@ -37,7 +37,6 @@ COLUNAS = "id, codigo, tipo, status, emissao, chamada_em"
 
 
 class RepositorioSenhas:
-
     def __init__(self, caminho_banco: str) -> None:
         self._conexao = sqlite3.connect(caminho_banco, check_same_thread=False)
         self._trava = threading.Lock()
